@@ -2,7 +2,7 @@
 
 Submitted by: [] (directory ID) 
 <br>
-Group Members: Luna Miranda (stu05), Tung Tran (ttran19), Shelly Tu (lunamira), 
+Group Members: Luna Miranda (lunamira), Tung Tran (ttran19), Shelly Tu (stu05), 
 <br>
 App Description: []
 <br>
