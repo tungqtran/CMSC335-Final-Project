@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> 
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div id="background">
+        <h2>Guess That Pokemon!</h2>
+        <div id="gameContainer">
+            <div style="display: flex; width: 100%">
+                <button id="blueButton"></button>
+                <h3 style="margin-left: 100px;">POKEDEX</h2>
+            </div>
+            <img id="pokeImg" src="" alt="No image found">
+            <br>
+            <div style="width:100%; display: flex;">
+                <div id="guessElts">
+                    <input id="guess" value="" placeholder="Pokemon name">
+                    <br>
+                    <br>
+                    <div id="textBar"></div>
+                    <button id="guessButton" onclick="checkGuess()">Guess!</button>
+                    <button onclick="getPokemon()" id="nextButton">►</button>
+                    <p id="attempts">Guesses left: 3</p>
+                </div>
+                <img id="controller" src="/images/controller.png">
+            </div>
+    
+        </div>
+    </div>
+    <script src="/code.js"></script>
+</body>
+</html>
