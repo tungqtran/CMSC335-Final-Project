@@ -21,27 +21,34 @@ function getPokemon() {
             throw new Error("Invalid URL");
         })
         .then(data => {
-            currentPokemon = data.name;
+            currentPokemon = {name: data.name, sprite: data.sprites.front_default};
             image.src = data.sprites.front_default;
         })
         .catch(error => console.log(error));
 }
 
 function checkGuess() {
-    console.log("hi");
     const guess = document.getElementById("guess").value.toLowerCase();
     const attemptText = document.getElementById("attempts");
     const textBar = document.getElementById("textBar");
     attempts -= 1;
 
-    if (currentPokemon === guess) {
+    if (currentPokemon.name === guess) {
         textBar.innerHTML = `Correct: Pokemon Added!`;
         document.getElementById("guessButton").disabled = true
+        // SEND A POST REQUEST
         // add the the pokemon to the correct pokemon list in the DB
         // increase the number guessed correctly for the user by 1
+        fetch("/addPokemon", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(currentPokemon)
+        });
     } else {
         if (attempts === 0) {
-            textBar.innerHTML = `Incorrect: This is ${currentPokemon}!`;
+            textBar.innerHTML = `Incorrect: This is ${currentPokemon.name}!`;
             document.getElementById("guessButton").disabled = true
         }
     }
