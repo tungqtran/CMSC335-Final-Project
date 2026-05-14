@@ -7,7 +7,6 @@ const portNumber = 4000;
 const bodyParser = require("body-parser");
 const { MongoClient, ServerApiVersion } = require("mongodb");
 const mongoose = require("mongoose");
-
 const session = require("express-session"); // new package, npm i express-session
 
 require("dotenv").config({
@@ -22,8 +21,14 @@ mongoose.connect(process.env.MONGO_CONNECTION_STRING)
 const userSchema = new mongoose.Schema({
     email: String,
     password: String,
-    score: Number,
-    pokemon: [{name: String, sprite: String}]
+    score: {
+        type: Number,
+        default: 0
+    },
+    pokemon: {
+        type: [{name: String, sprite: String}],
+        default: []
+    }
 });
 
 const User = mongoose.model("User", userSchema);
@@ -32,7 +37,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.set("view engine", "ejs");
 app.set("views", path.resolve(__dirname, "templates"));
 app.use(express.static(path.join(__dirname, "public")));
-
+app.use(express.json());
 
 app.use(session({
         secret: process.env.SESSION_SECRET || "fallback-secret-change-me",
@@ -102,13 +107,18 @@ app.get("/leaderboard", (req, res) => {
     res.render("leaderboard", {})
 })
 
-app.post("/addPokemon", (req, res) => {
+app.post("/addPokemon", async (req, res) => {
     // check the user session
-    if (req.session.user != undefined) {
-        let data = JSON.parse(req.body);
+    if (req.session.userId != undefined) {
+        let data = req.body;
         // add to DB based on the session user
+        let user = await User.findById(req.session.userId);
+        user.pokemon.push(data);
+        user.score += 1;
+        await user.save();
+        console.log("Pokemon Added");
     } else {
-        // redirect to login    
+        res.redirect("/login");
     }
     
 })
