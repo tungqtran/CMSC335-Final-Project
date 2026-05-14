@@ -14,16 +14,16 @@
     <div id="background">
         <h2 id="gameTitle">Your Pokemon Profile!</h2>
         <div id="gameContainer">
-            <div style="display: flex; width: 100%">
+            <div style="display: block; width: 100%">
                 <button id="blueButton"></button>
-                <h3 id="pokedex">Username</h2>
+                <h3 id="pokedex"><%= email %></h3>
             </div>
             <img id="pokeImg" src="/images/pokeball.png" alt="No image found">
             <br>
             <div style="width:100%; display: flex;">
                 <div id="guessElts">
-                    <h2>Total Pokemon Guessed Correctly:</h2>
-                    <h2>Current Pokedex Entries:</h2>
+                    <h2>Total Pokemon Guessed Correctly: <%= score %></h2>
+                    <!--<h2>Current Pokedex Entries:</h2>-->
                 </div>
             </div>
         </div>

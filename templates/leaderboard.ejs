@@ -20,26 +20,13 @@
             <div style="width:80%; display: flex; background-color:white; border-radius: 10px; border-width: 8px; border-style: solid; border-color: lightgrey">
                 <div>
                     <ol>
-                        <li>Username: Score:</li>
-                        <br>
-                        <li>Username: Score:</li>
-                        <br>
-                        <li>Username: Score:</li>
-                        <br>
-                        <li>Username: Score:</li>
-                        <br>
-                        <li>Username: Score:</li>
-                        <br>
-                        <li>Username: Score:</li>
-                        <br>
-                        <li>Username: Score:</li>
-                        <br>
-                        <li>Username: Score:</li>
-                        <br>
-                        <li>Username: Score:</li>
-                        <br>
-                        <li>Username: Score:</li>
-                        <br>
+                        <% leaderboard.forEach(function(user) { %>
+                            <li>
+                                User: <%= user.email %> :
+                                Score: <%= user.score %>
+                            </li>
+                            <br>
+                        <% }) %>
                     </ol>
                 </div>
             </div>

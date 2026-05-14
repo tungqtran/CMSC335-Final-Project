@@ -67,7 +67,7 @@ app.post("/register", async (req, res) => {
 
         const user = await User.create({email, password});
         req.session.userId = user._id;
-        res.redirect("/homepage");
+        res.redirect("/");
     } catch (err) {
         console.error(err);
         res.render("register", { error: "bad registrarion ertoer (error)"});
@@ -98,13 +98,68 @@ app.get("/game", (req, res) => {
     res.render("gameScreen", {});
 });
 
-app.get("/profile", (req, res) => {
-    res.render("profile", {})
-})
+// app.get("/profile", (req, res) => {
+//     res.render("profile", {})
+// })
 
-app.get("/leaderboard", (req, res) => {
-    res.render("leaderboard", {})
-})
+app.get("/profile", async (req, res) => {
+
+    if (!req.session.userId) {
+        return res.redirect("/login");
+    }
+
+    try {
+
+        const user = await User.findById(req.session.userId);
+
+        res.render("profile", {
+            email: user.email,
+            score: user.score,
+            pokemonCount: user.pokemon.length,
+            pokemon: user.pokemon
+        });
+
+    } catch (err) {
+        console.log(err);
+        res.redirect("/login");
+    }
+});
+
+// app.get("/leaderboard", (req, res) => {
+//     res.render("leaderboard", {})
+// })
+
+app.get("/leaderboard", async (req, res) => {
+
+    try {
+
+        // get top scores descending
+        let leaderboard = await User.find({})
+            .sort({ score: -1 })
+            .limit(10);
+
+        // fill empty entries if fewer than 10 users
+        while (leaderboard.length < 10) {
+
+            leaderboard.push({
+                email: "Empty",
+                score: "--"
+            });
+        }
+
+        res.render("leaderboard", {
+            leaderboard: leaderboard
+        });
+
+    } catch (err) {
+
+        console.log(err);
+
+        res.render("leaderboard", {
+            leaderboard: []
+        });
+    }
+});
 
 app.post("/addPokemon", async (req, res) => {
     // check the user session
