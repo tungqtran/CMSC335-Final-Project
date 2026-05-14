@@ -34,6 +34,14 @@ app.get("/game", (req, res) => {
     res.render("gameScreen", {});
 });
 
+app.get("/profile", (req, res) => {
+    res.render("profile", {})
+})
+
+app.get("/leaderboard", (req, res) => {
+    res.render("leaderboard", {})
+})
+
 app.post("/addPokemon", (req, res) => {
     // check the user session
     if (req.session.user != undefined) {
