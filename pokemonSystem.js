@@ -35,12 +35,11 @@ app.use(express.static(path.join(__dirname, "public")));
 
 
 app.use(session({
-        secret: process.env.SESSION_SECRET || "fallback-secret-change-me",
+    secret: process.env.SESSION_SECRET || "fallback-secret-change-me",
     resave: false,
     saveUninitialized: false,
     // store: MongoStore.create({ mongoUrl: process.env.MONGO_CONNECTION_STRING }),
     cookie: { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 }
-
 }));
 
 
@@ -79,7 +78,7 @@ app.post("/login", async (req, res) => {
     const { email, password } = req.body;
     try {
         const user = await User.findOne({email});
-        if (!user) {
+        if (!user || user.password !== password) {
             return res.render("login", {error: "invalid login test"});
         }
         req.session.userId = user._id;
