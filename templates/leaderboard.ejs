@@ -11,13 +11,17 @@
 </head>
 <body>
     <div id="background">
-        <h2 id="gameTitle">Leaderboard!</h2>
+        <div id="gameTop">
+            <button class="switchButtons" onclick="window.location.href='/profile'">Profile</button>
+            <h2 id="gameTitle">Leaderboard!</h2>
+            <button class="switchButtons" onclick="window.location.href='/game'">Game</button>
+        </div>
         <div id="gameContainer">
             <div style="display: flex; width: 100%">
-                <button id="blueButton"></button>
+                <button id="blueButton" onclick="window.location.href='/logout'"></button>
                 <h3 id="pokedex">Top Ten:</h2>
             </div>
-            <div style="width:80%; display: flex; background-color:white; border-radius: 10px; border-width: 8px; border-style: solid; border-color: lightgrey">
+            <div style="overflow: auto; height: 50%; width:80%; display: flex; background-color:white; border-radius: 10px; border-width: 8px; border-style: solid; border-color: lightgrey">
                 <div>
                     <ol>
                         <% leaderboard.forEach(function(user) { %>

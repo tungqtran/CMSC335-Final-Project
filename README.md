@@ -12,6 +12,6 @@ APIs: [] (http:notrealvideoapp.what),
 <br>
 Contact Email: []
 <br>
-Deployed App Link: []
+Deployed App Link: [https://cmsc335-final-project-68pq.onrender.com/]
 <br>
 AI Use: []

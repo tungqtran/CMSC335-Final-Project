@@ -11,10 +11,14 @@
 </head>
 <body>
     <div id="background">
-        <h2 id="gameTitle">Guess That Pokemon!</h2>
+        <div id="gameTop">
+            <button class="switchButtons" onclick="window.location.href='/profile'">Profile</button>
+            <h2 id="gameTitle">Guess That Pokemon!</h2>
+            <button class="switchButtons" onclick="window.location.href='/leaderboard'">Leaderboard</button>
+        </div>
         <div id="gameContainer">
             <div style="display: flex; width: 100%">
-                <button id="blueButton"></button>
+                <button id="blueButton" onclick="window.location.href='/logout'"></button>
                 <h3 id="pokedex">POKEDEX</h2>
             </div>
             <img id="pokeImg" src="" alt="No image found">
