@@ -175,7 +175,16 @@ app.post("/addPokemon", async (req, res) => {
         res.redirect("/login");
     }
     
-})
+});
+
+app.get("/logout", (request, response) => {
+  let message;
+
+    if (request.session.userId!= undefined) {
+        request.session.destroy();
+    }
+    response.redirect("/login")
+});
 
 app.listen(portNumber, () => {
     console.log(`Server running on http://localhost:${portNumber}`);

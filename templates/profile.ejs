@@ -12,10 +12,14 @@
 <body>
 
     <div id="background">
-        <h2 id="gameTitle">Your Pokemon Profile!</h2>
+        <div id="gameTop">
+            <button class="switchButtons" onclick="window.location.href='/game'">Game</button>
+            <h2 id="gameTitle">Your Pokemon Profile!</h2>
+            <button class="switchButtons" onclick="window.location.href='/leaderboard'">Leaderboard</button>
+        </div>
         <div id="gameContainer">
             <div style="display: block; width: 100%">
-                <button id="blueButton"></button>
+                <button id="blueButton" onclick="window.location.href='/logout'"></button>
                 <h3 id="pokedex"><%= email %></h3>
             </div>
             <img id="pokeImg" src="/images/pokeball.png" alt="No image found">
