@@ -11,11 +11,14 @@
 </head>
 
 <body>
-    <h1>Initial Page Test</h1>
-    
-    <a href="/register">Registration for a new account here!</a>
-    <br>
-    <a href="/login">Looking to try logging in? Try here!</a>
+    <div id="background">
+        <div id="gameContainer">
+            <h1 id="gameTitle" style="text-align: center">Who's That Pokémon?</h1>
+            <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem;">
+                <a href="/register" class="switchButtons" style="display:flex; align-items:center; justify-content:center; background-color: lightblue; border-radius: 10px; text-decoration: none; font-family: 'Press Start 2P', system-ui; font-size: 0.5rem; color: black;">New Account</a>
+                <a href="/login" class="switchButtons" style="display:flex; align-items:center; justify-content:center; background-color: rgb(68, 228, 68); border-radius: 10px; text-decoration: none; font-family: 'Press Start 2P', system-ui; font-size: 0.5rem; color: black;">Log In</a>
+            </div>
+        </div>
+    </div>
 </body>
-
 </html>

@@ -9,22 +9,30 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Press+Start+2P&family=Satisfy&display=swap" rel="stylesheet">
 </head>
-
 <body>
+    <div id="background">
+        <div id="gameContainer">
+            <h1 id="gameTitle">Log In</h1>
 
-    <h1>Login Page (test)</h1>
+            <% if (error) { %>
+                <p style="color: yellow; font-family: 'Press Start 2P', system-ui; font-size: 0.5rem; text-align: center; padding: 0 1rem;"><%= error %></p>
+            <% } %>
 
-    <% if (error) { %><p style="color:red"><%= error %></p><% } %>
+            <form method="post" action="/login" style="display: flex; flex-direction: column; gap: 1rem; width: 80%; margin-top: 1rem;">
+                <label style="color: white; font-family: 'Press Start 2P', system-ui; font-size: 0.55rem;">
+                    Email
+                    <input type="email" name="email" id="guess" style="display: block; width: 100%; margin-top: 0.5rem; box-sizing: border-box;" required>
+                </label>
+                <label style="color: white; font-family: 'Press Start 2P', system-ui; font-size: 0.55rem;">
+                    Password
+                    <input type="password" name="password" id="guess" style="display: block; width: 100%; margin-top: 0.5rem; box-sizing: border-box;" required>
+                </label>
+                <button type="submit" id="guessButton" style="align-self: center;">Log In</button>
+            </form>
 
-    <form method="post" action="/login">
-        <label>Email Address: <input type="email" name="email"></label>
-        <br>
-        <label>Password: <input type="password" name="password"></label>
-        <br>
-        <button type="Submit">Log In</button>
-    </form>
-
-
+            <a href="/register" style="margin-top: 1.5rem; color: lightblue; font-family: 'Press Start 2P', system-ui; font-size: 0.5rem;">No account? Register</a>
+        </div>
+    </div>
 </body>
 
 </html>

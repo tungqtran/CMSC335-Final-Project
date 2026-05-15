@@ -2,6 +2,7 @@
 
 const express = require("express");
 const app = express();
+const router = express.Router();
 const path = require("path");
 const portNumber = 4000;
 const bodyParser = require("body-parser");
@@ -49,15 +50,15 @@ app.use(session({
 
 
 
-app.get("/", async (req, res) => {
+router.get("/", async (req, res) => {
     res.render("homepage", { });
 });
 
-app.get("/register", (req, res) => {
+router.get("/register", (req, res) => {
     res.render("register", { error: null });
 });
 
-app.post("/register", async (req, res) => {
+router.post("/register", async (req, res) => {
     const { email, password } = req.body;
     try {
         const existing = await User.findOne({ email });
@@ -74,12 +75,12 @@ app.post("/register", async (req, res) => {
     }
 });
 
-app.get("/login", (req, res) => {
+router.get("/login", (req, res) => {
     if (req.session.userId) { return res.redirect("/game"); }
     res.render("login", { error: null });
 });
 
-app.post("/login", async (req, res) => {
+router.post("/login", async (req, res) => {
     const { email, password } = req.body;
     try {
         const user = await User.findOne({email});
@@ -94,15 +95,11 @@ app.post("/login", async (req, res) => {
     }
 });
 
-app.get("/game", (req, res) => {
+router.get("/game", (req, res) => {
     res.render("gameScreen", {});
 });
 
-// app.get("/profile", (req, res) => {
-//     res.render("profile", {})
-// })
-
-app.get("/profile", async (req, res) => {
+router.get("/profile", async (req, res) => {
 
     if (!req.session.userId) {
         return res.redirect("/login");
@@ -125,11 +122,7 @@ app.get("/profile", async (req, res) => {
     }
 });
 
-// app.get("/leaderboard", (req, res) => {
-//     res.render("leaderboard", {})
-// })
-
-app.get("/leaderboard", async (req, res) => {
+router.get("/leaderboard", async (req, res) => {
 
     try {
 
@@ -161,7 +154,7 @@ app.get("/leaderboard", async (req, res) => {
     }
 });
 
-app.post("/addPokemon", async (req, res) => {
+router.post("/addPokemon", async (req, res) => {
     // check the user session
     if (req.session.userId != undefined) {
         let data = req.body;
@@ -177,7 +170,7 @@ app.post("/addPokemon", async (req, res) => {
     
 });
 
-app.get("/logout", (request, response) => {
+router.get("/logout", (request, response) => {
   let message;
 
     if (request.session.userId!= undefined) {
@@ -185,6 +178,8 @@ app.get("/logout", (request, response) => {
     }
     response.redirect("/login")
 });
+
+app.use("/", router);
 
 app.listen(portNumber, () => {
     console.log(`Server running on http://localhost:${portNumber}`);
