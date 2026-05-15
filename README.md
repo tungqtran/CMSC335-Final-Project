@@ -6,7 +6,7 @@ Group Members: Luna Miranda (lunamira), Tung Tran (ttran19), Shelly Tu (stu05),
 <br>
 App Description: Allows users to play a name-guessing game based on Pokemon. Users can save their total number of correctly guessed pokemon with a score, and compare with others on a leaderboard.
 <br>
-YouTube Video Link: []
+YouTube Video Link: ([https://youtu.be/pSrn2GSMEzs])
 <br>
 APIs: Poke API ([https://pokeapi.co/]), 
 <br>
